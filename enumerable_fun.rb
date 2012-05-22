@@ -30,8 +30,15 @@ module Enumerable
   end
  
   def everything? *args, &block
-  
-  
+    if block_given?
+        each do |x|
+            pred = yield x
+            return false unless pred
+        end
+    else
+        return everything? {|x|x }
+    end
+    return true
   end
 
 

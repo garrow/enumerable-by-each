@@ -39,8 +39,21 @@ describe "enumerable" do
     bools.should be_true
   end
 
+  it "tells us everything" do 
+    same = [true,true].everything? {|x|x} 
+    same.should be_true
 
+    diffs = [true,false].everything? {|x|x}
+    diffs.should be_false
 
+    ints = [1,2,3,4].everything? {|x| x < 5}
+    ints.should be_true
+  end
+
+  it "tells us everything - sans block" do 
+    same = [true,true].everything?
+    same.should be_true
+  end
 
 
 end
